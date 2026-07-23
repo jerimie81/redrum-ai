@@ -1,0 +1,8 @@
+{
+  "name": "redrum-ai",
+  "description": "Personal AI partner workspace and SRE companion hub, integrating local memory, structured task tracking, and SRE diagnostics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

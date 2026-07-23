@@ -1,0 +1,198 @@
+Metadata-Version: 2.4
+Name: redrum-ai
+Version: 1.0.0
+Summary: A personal AI partner local assistant CLI companion
+Author: Redrum
+Project-URL: Homepage, https://github.com/redrum/redrum-ai
+Project-URL: Repository, https://github.com/redrum/redrum-ai.git
+Project-URL: Issues, https://github.com/redrum/redrum-ai/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Development Status :: 5 - Production/Stable
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic>=2.0
+Requires-Dist: typing-extensions>=4.0
+Requires-Dist: prompt-toolkit>=3.0
+Requires-Dist: redrum-memory
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0; extra == "dev"
+Requires-Dist: black>=23.0; extra == "dev"
+Requires-Dist: flake8>=6.0; extra == "dev"
+Requires-Dist: mypy>=1.0; extra == "dev"
+Requires-Dist: hypothesis>=6.0; extra == "dev"
+
+# redrum-ai
+
+`redrum-ai` is a local AI partner and project director for Redrum. It is built as an installable Python package with persistent SQLite-backed memory, structured task workflows, guarded tool access, and startup diagnostics.
+
+## What It Does
+
+- Keeps project context and useful memory in a local database
+- Turns natural-language requests into structured tasks and handoff reports
+- Supports chat, planning, execution, review, and proactive workflows
+- Exposes a small tool registry for safe, explicit operations
+- Reads the nearest `AGENT.md` and uses it as the primary instruction source when available
+- Falls back to offline responses when the configured model runtime is unavailable
+
+## Installation
+
+Install in editable mode:
+
+```bash
+pip install -e .
+```
+
+This registers the `redrum-ai` console command.
+
+## Configuration
+
+Configuration can come from environment variables or a JSON config file passed with `--config <path>`.
+
+### Environment Variables
+
+- `REDRUM_AI_DB_PATH`: SQLite database path, default `/home/redrum/.gemini/memory.db`
+- `REDRUM_AI_GEMINI_ROOT`: Root directory used to locate `AGENT.md` and `.gemini` resources, default `~/.gemini`
+- `REDRUM_AI_MODEL_PROVIDER`: Model runtime, default `ollama`
+- `REDRUM_AI_MODEL`: Ollama model name, default `gemma-3-4b-it-Q4_0`
+- `REDRUM_AI_OLLAMA_URL`: Ollama API URL, default `http://localhost:11434`
+- `REDRUM_AI_LLAMA_CPP_REPO_ID`: Hugging Face repo for llama.cpp models, default `ggml-org/gemma-3-4b-it-GGUF`
+- `REDRUM_AI_LLAMA_CPP_FILENAME`: GGUF filename to load, default `gemma-3-4b-it-Q4_0.gguf`
+- `REDRUM_AI_LLAMA_CPP_N_CTX`: Context window for llama.cpp, default `4096`
+- `REDRUM_AI_LLAMA_CPP_N_THREADS`: CPU threads for llama.cpp, default `cpu_count - 1`
+- `REDRUM_AI_LLAMA_SERVER_URL`: llama server URL, default `http://127.0.0.1:8080`
+- `REDRUM_AI_TIMEOUT`: Request timeout in seconds, default `180`
+- `REDRUM_AI_MAX_TOKENS`: Max tokens to predict, default `256`
+- `REDRUM_AI_RUNTIME_PROFILE`: Runtime profile such as `standard` or `constrained-edge`
+- `REDRUM_AI_CONFIG_DIR`: Config directory, default `~/.config/redrum-ai`
+- `REDRUM_AI_STATE_DIR`: State/log directory, default `~/.local/state/redrum-ai`
+- `REDRUM_AI_CACHE_DIR`: Cache directory, default `~/.cache/redrum-ai`
+
+### JSON Config
+
+Example `config.json`:
+
+```json
+{
+  "db_path": "/home/redrum/.gemini/memory.db",
+  "model_provider": "ollama",
+  "model_name": "gemma-3-4b-it-Q4_0",
+  "ollama_url": "http://localhost:11434"
+}
+```
+
+## Common Commands
+
+Chat interactively:
+
+```bash
+redrum-ai chat
+```
+
+Run a one-shot query:
+
+```bash
+redrum-ai "What do you remember about this project?"
+redrum-ai query "Summarize the last task"
+```
+
+Run startup checks:
+
+```bash
+redrum-ai health
+redrum-ai health --skip-ollama-check
+```
+
+Inspect the plugin surface:
+
+```bash
+redrum-ai capabilities --host-api-version 1.0.0
+redrum-ai tools list
+redrum-ai tools manifest
+```
+
+Work with tasks:
+
+```bash
+redrum-ai task intake "Audit the backup script" --priority high --acceptance-criteria "Findings are documented and commands are reproducible"
+redrum-ai task list
+redrum-ai task update --id 1 --status needs_review --append-notes "Static review complete."
+redrum-ai task handoff --id 1
+```
+
+Manage memory:
+
+```bash
+redrum-ai memory search "preferred language"
+redrum-ai memory insert --name "Preference" --content "Prefers concise, direct answers." --tags preferences
+redrum-ai memory review --type knowledge --limit 25
+redrum-ai memory export
+```
+
+Check model profiles:
+
+```bash
+redrum-ai model profiles
+```
+
+Use proactive helpers:
+
+```bash
+redrum-ai proactive briefing
+redrum-ai proactive draft-commit
+redrum-ai proactive predict "git status"
+```
+
+Capture observability:
+
+```bash
+redrum-ai metrics
+redrum-ai bug-report
+```
+
+Bootstrap a fresh environment:
+
+```bash
+redrum-ai bootstrap
+```
+
+## Output Flags
+
+- `--json`: Prefer machine-readable output where supported
+- `--quiet`: Suppress nonessential status output
+- `--verbose`: Emit extra diagnostics
+- `--no-color`: Disable colored terminal output
+
+## First Run
+
+Run onboarding once for a fresh database:
+
+```bash
+redrum-ai bootstrap
+```
+
+That command runs migrations, seeds basic preferences, writes a welcome conversation, and prints a short day-one workflow.
+
+## Troubleshooting
+
+- PATH: after editable install, confirm `redrum-ai --version` works from a new shell.
+- Model runtime: use `redrum-ai health` to verify the configured runtime; use `redrum-ai health --skip-ollama-check` when testing database-only flows.
+- Database: override the SQLite path with `REDRUM_AI_DB_PATH=/path/to/memory.db`.
+- Permissions: file tools only operate inside approved workspace roots and may require approval for writes.
+- Diagnostics: include `redrum-ai bug-report` output when reproducing failures.
+
+## Maintenance
+
+- Schema changes live in `src/redrum_memory/migrations.py`. Add a new numbered migration, keep it idempotent where practical, and verify with `redrum-ai health --skip-ollama-check`.
+- For model updates, change `REDRUM_AI_MODEL_PROVIDER`, `REDRUM_AI_MODEL`, or the llama.cpp settings in your config, then run `redrum-ai health`.
+- The launcher automatically loads the nearest `AGENT.md` in the project tree and uses it as the primary instruction block.
+
+## Release Checklist
+
+1. Update `pyproject.toml` and `src/redrum_ai/main.py` versions together.
+2. Run syntax checks and the regression subset.
+3. Back up the production `memory.db`.
+4. Verify `redrum-ai capabilities`, `health`, `task intake`, `metrics`, and `bug-report`.
+5. Record rollback notes before installing the new version for daily use.

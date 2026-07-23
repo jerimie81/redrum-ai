@@ -1,0 +1,162 @@
+{
+  "manifest_version": 1,
+  "project_name": "redrum-ai",
+  "project_slug": "redrum-ai",
+  "owner": "Redrum",
+  "project_type": "personal_ai_partner",
+  "role": "project_director",
+  "summary": "Personal AI partner project focused on building a local assistant that learns, grows, and works with Redrum.",
+  "authority": {
+    "precedence": "highest",
+    "instruction_sources": [
+      "AGENT.md",
+      "manifest.json"
+    ],
+    "follow_expressly": true,
+    "conflict_rule": "defer_to_agent_and_manifest"
+  },
+  "root": ".",
+  "description_file": "DESCRIPTION.md",
+  "agent_file": "AGENT.md",
+  "progress_file": "PROJECT_PROGRESS.md",
+  "primary_script": "ai_partner.py",
+  "launcher": "redrum-ai",
+  "runtime_provider": "ollama",
+  "runtime_model": "qwen2.5:0.5b",
+  "runtime_language": "python",
+  "runtime_database": "memory.db",
+  "documents": [
+    {
+      "path": "DESCRIPTION.md",
+      "role": "project_description",
+      "required": true
+    },
+    {
+      "path": "AGENT.md",
+      "role": "agent_instructions",
+      "required": true
+    },
+    {
+      "path": "PROJECT_PROGRESS.md",
+      "role": "progress_log",
+      "required": true
+    },
+    {
+      "path": "ai_partner.py",
+      "role": "runtime_entrypoint",
+      "required": true
+    }
+  ],
+  "read_order": [
+    "DESCRIPTION.md",
+    "AGENT.md",
+    "PROJECT_PROGRESS.md",
+    "ai_partner.py"
+  ],
+  "focus": [
+    "working partnership",
+    "persistent memory",
+    "safe tool use",
+    "planning and execution",
+    "learning from feedback"
+  ],
+  "task": {
+    "mode": "project_director",
+    "mission": "turn user goals into milestones, tasks, and actionable steps",
+    "workflow": [
+      "intake",
+      "scope",
+      "plan",
+      "execute",
+      "review",
+      "handoff"
+    ],
+    "default_behavior": {
+      "goal_focus": "next_highest_leverage_step",
+      "granularity": "actionable",
+      "status_updates": "short_and_frequent"
+    },
+    "task_model": {
+      "fields": [
+        "title",
+        "objective",
+        "status",
+        "priority",
+        "dependencies",
+        "acceptance_criteria",
+        "next_action",
+        "notes"
+      ],
+      "status_values": [
+        "backlog",
+        "ready",
+        "in_progress",
+        "blocked",
+        "needs_review",
+        "done"
+      ]
+    }
+  },
+  "memory": {
+    "purpose": "durable working memory and learning",
+    "sources": [
+      "conversation",
+      "project_docs",
+      "tool_outputs",
+      "user_feedback",
+      "task_outcomes"
+    ],
+    "stores": [
+      "preferences",
+      "facts",
+      "decisions",
+      "projects",
+      "work_logs",
+      "summaries"
+    ],
+    "scopes": [
+      "user",
+      "project",
+      "workspace"
+    ],
+    "policy": {
+      "store_only_confirmed_useful_facts": true,
+      "prefer_structured_records": true,
+      "summarize_before_pruning": true,
+      "avoid_hallucinated_memory": true
+    },
+    "retention": {
+      "short_term_turns": 12,
+      "summary_interval_turns": 6,
+      "prune_low_value": true
+    }
+  },
+  "approval": {
+    "mode": "human_in_the_loop",
+    "levels": [
+      "advisory",
+      "confirm",
+      "explicit",
+      "blocked"
+    ],
+    "required_for": [
+      "destructive_actions",
+      "irreversible_changes",
+      "security_sensitive_actions",
+      "credential_handling",
+      "external_side_effects",
+      "system_configuration_changes"
+    ],
+    "approval_style": {
+      "explain_impact": true,
+      "be_specific": true,
+      "keep_prompt_brief": true
+    },
+    "audit": {
+      "log_significant_actions": true,
+      "log_decisions": true,
+      "log_approvals": true
+    },
+    "human_override": true
+  }
+}

@@ -1,0 +1,2 @@
+[console_scripts]
+redrum-ai = redrum_ai.main:main_entry

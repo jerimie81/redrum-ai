@@ -1,0 +1,252 @@
+Script started on 2026-07-22 13:48:40-04:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="168" LINES="44"]
+ACRD Hardened Workspace Environment Loaded
+[?2004h[38;5;45m[2026-07-22 13:48][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ exit[C[C./install.sh[C[C[8Pexit[C[C./install.sh
+[?2004lHardware scan saved to /home/redrum/.config/redrum-ai/hardware.json
+
+Recommended: provider=llama_server model=gemma3:4b profile=constrained-edge
+Provider [ollama/llama_cpp/llama_server/openai/openai_compatible/anthropic/google_gemini] [llama_server]: 
+Model name [gemma3:4b]: 
+llama-server URL [http://127.0.0.1:8080]: 
+Runtime profile [constrained-edge]: 
+Requirement already satisfied: pip in ./.venv/lib/python3.13/site-packages (26.1.2)
+Setuptools build backend unavailable; registering the local source tree.
+Installed redrum-ai
+Provider: llama_server
+Model: gemma3:4b
+Config: /home/redrum/.config/redrum-ai/config.json
+Local model: /home/redrum/usb-ai/AI/models/gemma-2-2b-it-Q4_K_M.gguf
+vmtouch: available (run setup_edge_optimizations.sh as root to raise memlock and enable persistent locking)
+{
+  "timestamp": "2026-07-22 13:48:55",
+  "database": {
+    "path": "/home/redrum/.gemini/memory.db",
+    "status": "ready",
+    "errors": []
+  },
+  "ollama": {
+    "url": "http://localhost:11434",
+    "model": "gemma3:4b",
+    "provider": "ollama",
+    "profiles": [
+      {
+        "name": "speed",
+        "purpose": "classification and short summaries",
+        "model_name": "gemma3:4b",
+        "max_tokens": 256
+      },
+      {
+        "name": "quality",
+        "purpose": "planning and review",
+        "model_name": "gemma3:4b",
+        "max_tokens": 512
+      },
+      {
+        "name": "coding",
+        "purpose": "structured code and tool reasoning",
+        "model_name": "gemma3:4b",
+        "max_tokens": 512
+      }
+    ],
+    "status": "skipped",
+    "errors": []
+  },
+  "plugin": {
+    "api_version": "1.0.0",
+    "capability_count": 32,
+    "status": "ready",
+    "errors": []
+  },
+  "edge_environment": {
+    "status": "ready",
+    "warnings": []
+  }
+}
+[?2004h[38;5;45m[2026-07-22 13:48][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ redrum-ai who is the favorite to win the mlb title
+[?2004l/home/redrum/.local/bin/redrum-ai: line 5: /home/redrum/.gemini/redrum-ai/redrum-ai: Permission denied
+/home/redrum/.local/bin/redrum-ai: line 5: exec: /home/redrum/.gemini/redrum-ai/redrum-ai: cannot execute: Permission denied
+[?2004h[38;5;45m[2026-07-22 13:49][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ redrum-ai who is the favorite to win the mlb title
+[?2004l^C^^X^X^X^XTraceback (most recent call last):
+  File [35m"/home/redrum/.gemini/redrum-ai/ai_partner.py"[0m, line [35m8[0m, in [35m<module>[0m
+    raise SystemExit([31mmain_entry[0m[1;31m()[0m)
+                     [31m~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m126[0m, in [35mmain_entry[0m
+    return _main_impl(argv)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m427[0m, in [35m_main_impl[0m
+    ai_response = send_to_ollama(config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m560[0m, in [35msend_to_ollama[0m
+    return [31mget_provider(config).generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m231[0m, in [35mgenerate[0m
+    return [31mself.primary.generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m245[0m, in [35mgenerate[0m
+    return _send_to_ollama(self.config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m423[0m, in [35m_send_to_ollama[0m
+    with [31mrequest.urlopen[0m[1;31m(ollama_request, timeout=config.timeout)[0m as response:
+         [31m~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m189[0m, in [35murlopen[0m
+    return [31mopener.open[0m[1;31m(url, data, timeout)[0m
+           [31m~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m489[0m, in [35mopen[0m
+    response = self._open(req, data)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m506[0m, in [35m_open[0m
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m466[0m, in [35m_call_chain[0m
+    result = func(*args)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m1348[0m, in [35mhttp_open[0m
+    return [31mself.do_open[0m[1;31m(http.client.HTTPConnection, req)[0m
+           [31m~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m1323[0m, in [35mdo_open[0m
+    r = h.getresponse()
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m1459[0m, in [35mgetresponse[0m
+    [31mresponse.begin[0m[1;31m()[0m
+    [31m~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m336[0m, in [35mbegin[0m
+    version, status, reason = [31mself._read_status[0m[1;31m()[0m
+                              [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m297[0m, in [35m_read_status[0m
+    line = str([31mself.fp.readline[0m[1;31m(_MAXLINE + 1)[0m, "iso-8859-1")
+               [31m~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/socket.py"[0m, line [35m719[0m, in [35mreadinto[0m
+    return [31mself._sock.recv_into[0m[1;31m(b)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^[0m
+[1;35mKeyboardInterrupt[0m
+
+[?2004h[38;5;45m[2026-07-22 13:54][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ redrum-ai who is the favorite to win the mlb title[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K
+[?2004l[?2004h[38;5;45m[2026-07-22 13:54][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ redrum-ai gui
+[?2004l^CTraceback (most recent call last):
+  File [35m"/home/redrum/.gemini/redrum-ai/ai_partner.py"[0m, line [35m8[0m, in [35m<module>[0m
+    raise SystemExit([31mmain_entry[0m[1;31m()[0m)
+                     [31m~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m126[0m, in [35mmain_entry[0m
+    return _main_impl(argv)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m427[0m, in [35m_main_impl[0m
+    ai_response = send_to_ollama(config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m560[0m, in [35msend_to_ollama[0m
+    return [31mget_provider(config).generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m231[0m, in [35mgenerate[0m
+    return [31mself.primary.generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m245[0m, in [35mgenerate[0m
+    return _send_to_ollama(self.config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m423[0m, in [35m_send_to_ollama[0m
+    with [31mrequest.urlopen[0m[1;31m(ollama_request, timeout=config.timeout)[0m as response:
+         [31m~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m189[0m, in [35murlopen[0m
+    return [31mopener.open[0m[1;31m(url, data, timeout)[0m
+           [31m~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m489[0m, in [35mopen[0m
+    response = self._open(req, data)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m506[0m, in [35m_open[0m
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m466[0m, in [35m_call_chain[0m
+    result = func(*args)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m1348[0m, in [35mhttp_open[0m
+    return [31mself.do_open[0m[1;31m(http.client.HTTPConnection, req)[0m
+           [31m~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m1323[0m, in [35mdo_open[0m
+    r = h.getresponse()
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m1459[0m, in [35mgetresponse[0m
+    [31mresponse.begin[0m[1;31m()[0m
+    [31m~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m336[0m, in [35mbegin[0m
+    version, status, reason = [31mself._read_status[0m[1;31m()[0m
+                              [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m297[0m, in [35m_read_status[0m
+    line = str([31mself.fp.readline[0m[1;31m(_MAXLINE + 1)[0m, "iso-8859-1")
+               [31m~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/socket.py"[0m, line [35m719[0m, in [35mreadinto[0m
+    return [31mself._sock.recv_into[0m[1;31m(b)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^[0m
+[1;35mKeyboardInterrupt[0m
+
+[?2004h[38;5;45m[2026-07-22 13:55][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ redrum-ai gui[Kwho is the favorite to win the mlb title[C[C./install.sh[K[C[C[8Pexit[C[C./install.sh[C[Credrum-ai who is the favorite to win the mlb title
+[?2004lNo live search results found.
+[?2004h[38;5;45m[2026-07-22 14:22][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ redrum-aik=[K[K :[K"list 5 mlb teams:[K"
+[?2004l[MODEL WARNING] Ollama ready: gemma3:4b
+^CTraceback (most recent call last):
+  File [35m"/home/redrum/.gemini/redrum-ai/ai_partner.py"[0m, line [35m8[0m, in [35m<module>[0m
+    raise SystemExit([31mmain_entry[0m[1;31m()[0m)
+                     [31m~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m127[0m, in [35mmain_entry[0m
+    return _main_impl(argv)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m409[0m, in [35m_main_impl[0m
+    [31msummarize_older_conversations[0m[1;31m(config)[0m
+    [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m90[0m, in [35msummarize_older_conversations[0m
+    summary = send_to_ollama(config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m561[0m, in [35msend_to_ollama[0m
+    return [31mget_provider(config).generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m231[0m, in [35mgenerate[0m
+    return [31mself.primary.generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m246[0m, in [35mgenerate[0m
+    return _send_to_ollama(self.config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m424[0m, in [35m_send_to_ollama[0m
+    with [31mrequest.urlopen[0m[1;31m(ollama_request, timeout=config.timeout)[0m as response:
+         [31m~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m189[0m, in [35murlopen[0m
+    return [31mopener.open[0m[1;31m(url, data, timeout)[0m
+           [31m~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m489[0m, in [35mopen[0m
+    response = self._open(req, data)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m506[0m, in [35m_open[0m
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m466[0m, in [35m_call_chain[0m
+    result = func(*args)
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m1348[0m, in [35mhttp_open[0m
+    return [31mself.do_open[0m[1;31m(http.client.HTTPConnection, req)[0m
+           [31m~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/urllib/request.py"[0m, line [35m1323[0m, in [35mdo_open[0m
+    r = h.getresponse()
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m1459[0m, in [35mgetresponse[0m
+    [31mresponse.begin[0m[1;31m()[0m
+    [31m~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m336[0m, in [35mbegin[0m
+    version, status, reason = [31mself._read_status[0m[1;31m()[0m
+                              [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/http/client.py"[0m, line [35m297[0m, in [35m_read_status[0m
+    line = str([31mself.fp.readline[0m[1;31m(_MAXLINE + 1)[0m, "iso-8859-1")
+               [31m~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/socket.py"[0m, line [35m719[0m, in [35mreadinto[0m
+    return [31mself._sock.recv_into[0m[1;31m(b)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^[0m
+[1;35mKeyboardInterrupt[0m
+
+[?2004h[38;5;45m[2026-07-22 14:23][0m [38;5;202mredrum@mx[0m:[38;5;46m~/.gemini/redrum-ai[0m
+$ redrum-ai "list 5 mlb teams"[K[1P
+[?2004l[MODEL WARNING] Ollama ready: gemma3:4b
+^[^[^[^[^CTraceback (most recent call last):
+  File [35m"/home/redrum/.gemini/redrum-ai/ai_partner.py"[0m, line [35m8[0m, in [35m<module>[0m
+    raise SystemExit([31mmain_entry[0m[1;31m()[0m)
+                     [31m~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m127[0m, in [35mmain_entry[0m
+    return _main_impl(argv)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m409[0m, in [35m_main_impl[0m
+    [31msummarize_older_conversations[0m[1;31m(config)[0m
+    [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/main.py"[0m, line [35m90[0m, in [35msummarize_older_conversations[0m
+    summary = send_to_ollama(config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m561[0m, in [35msend_to_ollama[0m
+    return [31mget_provider(config).generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m231[0m, in [35mgenerate[0m
+    return [31mself.primary.generate[0m[1;31m(prompt)[0m
+           [31m~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^[0m
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m246[0m, in [35mgenerate[0m
+    return _send_to_ollama(self.config, prompt)
+  File [35m"/home/redrum/.gemini/redrum-ai/src/redrum_ai/model.py"[0m, line [35m424[0m, in [35m_send_to_ollama[0m
+    with [31mrequest.urlopen[0m[1;31m(ollama_request, timeout=config.timeout)[0m as response:
+      

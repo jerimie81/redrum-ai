@@ -1,0 +1,6 @@
+#!/bin/bash
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [[ -x "$DIR/.venv/bin/redrum-ai" ]]; then
+    exec "$DIR/.venv/bin/redrum-ai" "$@"
+fi
+exec python3 "$DIR/ai_partner.py" "$@"
